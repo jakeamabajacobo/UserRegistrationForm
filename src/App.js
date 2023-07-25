@@ -11,12 +11,27 @@ const UserRegistrationForm = () => {
     const [password, setPassword] = useState('');
     const [country, setCountry] = useState('');
     const [profession, setProfession] = useState('');
+    const [profValue, setprofValue] = useState('');
     const [specialty, setSpecialty] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [countries, setCountries] = useState([]);
     const [professions, setProfessions] = useState([]);
     const [specialties, setSpecialties] = useState([]);
   
+    //modals
+    const [showModal, setShowModal] = useState(false);
+    const [detailModal, setShowDetailModal] = useState(false);
+
+    
+      // Function to display modal with spinning loader for 3 seconds
+      const displayModalWithLoader = () => {
+        setShowModal(true);
+        setTimeout(() => {
+          setShowModal(false);
+          setShowDetailModal(true);
+        }, 3000); // Hide modal after 3 seconds (3000 ms)
+      };
+
     // Fetch data for "country" dropdown from the public API
     useEffect(() => {
       fetch('/rest/refdata/countries')
@@ -59,20 +74,13 @@ const UserRegistrationForm = () => {
     const handleSubmit = (e) => {
       e.preventDefault();
       setIsLoading(true);
-  
-      // Simulate loading for 3 seconds before displaying data
-      setTimeout(() => {
-        setIsLoading(false);
-        alert(JSON.stringify({
-          firstName,
-          lastName,
-          email,
-          password,
-          country,
-          profession,
-          specialty,
-        }, null, 2));
-      }, 3000);
+      displayModalWithLoader()
+    };
+
+
+    const handleSelectChange = (e) => {
+      setProfession(e.target.value);
+      setprofValue(e.target[e.target.selectedIndex].innerText);
     };
 
   return (
@@ -91,7 +99,7 @@ const UserRegistrationForm = () => {
                             <div class="panel-body">
 
                                 <form className="container form-horizontal" onSubmit={handleSubmit}>
-                              <br />
+                                  <br />
                                   <div className="form-group">
                                   <label class="control-label" for="firstName">First Name:</label><br />
                                     <div class="col-md-12">
@@ -135,13 +143,15 @@ const UserRegistrationForm = () => {
 
                                   <div className="form-group">
                                     <label class="control-label" for="profession">Profession:</label>
-                                      <div class="col-md-12">      
-                                          <select className="form-control" name="profession" value={profession} onChange={(e) => setProfession(e.target.value)}>
+                                      <div class="col-md-12">  
+                                          
+                                          <select className="form-control" value={profession} onChange={(e) => handleSelectChange(e)}>
                                             <option  key="default" value="">Select Profession</option>
                                             {professions.map((profession) => (
-                                              <option  key={profession.professionId} value={profession.professionId}>{profession.professionName}</option>
+                                              <option  key={profession.professionId}  value={profession.professionId}>{profession.professionName}</option>
                                             ))}
                                           </select>
+                                          <input type="text" id="profession" name="profession" value={profValue} hidden="true"  />
                                       </div>
                                   </div>
 
@@ -154,7 +164,7 @@ const UserRegistrationForm = () => {
                                             <option  key="default" value="">Select Specialty</option>
                                             {                                
                                             specialties.map((specialty) => (
-                                              <option key={specialty.specialtyId} value={specialty.specialtyId}>{specialty.specialtyName}</option>
+                                              <option key={specialty.specialtyId} value={specialty.specialtyName}>{specialty.specialtyName}</option>
                                             ))}
                                           </select>
                                       </div>
@@ -164,14 +174,86 @@ const UserRegistrationForm = () => {
 
                                   <div class="text-center"  >
                                     <button type="submit" className="btn btn-default btn-lg btn_submit" disabled={isLoading}>
-                                      {isLoading ? 'Submitting...' : 'Submit'}
+                                      Submit
                                     </button>
                                     
-                                    <button type="button" className="btn btn-default btn-lg btn_submit btn_cancel">
+                                    <button type="button" onClick={() => window.location.reload(true)} className="btn btn-default btn-lg btn_submit btn_cancel">
                                               Cancel
                                     </button>
                                   </div>
                                 </form>
+
+
+
+
+
+
+     {/* loading Modal */}
+     <div className={`modal ${showModal ? 'show d-block' : ''}`} tabIndex="-1" role="dialog">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-body text-center">
+                {showModal ? (
+                    <div class="spinner-border text-primary" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                ) : (
+                  <>
+                
+                  </>)
+                }
+            </div>
+          </div>
+        </div>
+      </div>
+      {showModal && <div className="modal-backdrop show" />}
+
+                   
+      {/* details modal */}  
+      <div className={`modal ${detailModal ? 'show d-block' : ''}`} tabIndex="-1" role="dialog">
+        <div className="modal-dialog detail_modal" role="document">
+          <div className="modal-content">
+            <div className="modal-body text-center">
+                  <h1>You are now Registered!</h1>
+
+
+                  <table className="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                        <th>Country</th>
+                        <th>Prefession</th>
+                        <th>Specialty</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td>{firstName}</td>
+                          <td>{lastName}</td>
+                          <td>{email}</td>
+                          <td>{country}</td>
+                          <td>{profValue}</td>
+                          <td>{specialty}</td>
+                        </tr>
+                    
+                    </tbody>
+                  </table>
+
+          
+                  <button type="button"  onClick={() => window.location.reload(true)} className="btn btn-default btn-lg btn_modal_close">
+                        Close
+                  </button>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+      {detailModal && <div className="modal-backdrop show" />}
+
+
+
 
                             </div>
                           </div>
