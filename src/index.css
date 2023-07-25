@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
+  Helvetica, Arial, "Lucida Grande", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.banner-image{
+position: relative;
+z-index: 1;
+width: 1428px;
+height: 182px;
+}
+
+.panel_parent{
+  margin-top: 40px;
+}
+
+.panel{
+  background-color: #ECF0F1 !important;
+}
+.panel-heading{
+  background-color: #FF8A65 !important;
+  color:black !important; 
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
+  Helvetica !important;
+  font-size: 32px !important;
+}
+
+label,input,select{
+  font-size: 18px !important;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
+  Helvetica !important;
+}
+
+input,select{
+  border: .1px solid #37474F !important;
+}
+
+.btn_submit{
+  font-size: 23px !important;
+  color:black !important; font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
+  Helvetica !important;
+  width: 120px !important;
+  height:50px !important;
+  margin-top: 10px !important;
+  margin-left: 30px !important;
+  background-color: white !important;
+  border: 2px solid #FF8A65 !important;
+}
+
+.btn_cancel{
+  border: 2px solid #37474F !important;
+}
+
+input{
+background-color: white  !important;
+}
