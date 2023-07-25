@@ -2,7 +2,7 @@
   "name": "testform",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://registeruser55knots.vercel.app/",
+  "proxy": "https://registeruser55knots.vercel.app",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
