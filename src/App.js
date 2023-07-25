@@ -34,7 +34,7 @@ const UserRegistrationForm = () => {
 
     // Fetch data for "country" dropdown from the public API
     useEffect(() => {
-      fetch('/rest/refdata/countries')
+      fetch('https://test-services.interact.technology/rest/refdata/countries')
         .then((response) => {
 
 
@@ -54,7 +54,7 @@ const UserRegistrationForm = () => {
   
     // Fetch data for "profession" dropdown from the public API
     useEffect(() => {
-      fetch('/rest/refdata/professions')
+      fetch('https://test-services.interact.technology/rest/refdata/professions')
         .then((response) => response.json())
         .then((data) => setProfessions(data))
         .catch((error) => console.error('Error fetching professions:', error));
@@ -63,7 +63,7 @@ const UserRegistrationForm = () => {
     // Fetch data for "specialty" dropdown based on selected profession
     useEffect(() => {
       if (profession) {
-        fetch(`/rest/refdata/specialties?professionId=${profession}`)
+        fetch(`https://test-services.interact.technology/rest/refdata/specialties?professionId=${profession}`)
           .then((response) => response.json())
           .then((data) => setSpecialties(data))
           .catch((error) => console.error('Error fetching specialties:', error));
@@ -170,7 +170,6 @@ const UserRegistrationForm = () => {
                                       </div>
                                     </div>
                                   )}
-
 
                                   <div class="text-center"  >
                                     <button type="submit" className="btn btn-default btn-lg btn_submit" disabled={isLoading}>
