@@ -34,7 +34,7 @@ const UserRegistrationForm = () => {
 
     // Fetch data for "country" dropdown from the public API
     useEffect(() => {
-      fetch('https://test-services.interact.technology/rest/refdata/countries')
+      fetch('/rest/refdata/countries')
         .then((response) => {
 
 
@@ -46,7 +46,7 @@ const UserRegistrationForm = () => {
         return  response.json() 
         })
         .then((data) => setCountries(data))
-        .catch((error) => console.error('Error fetching countries:', error));
+        .catch((error) => console.error(error));
     }, []);
 
    
@@ -54,19 +54,19 @@ const UserRegistrationForm = () => {
   
     // Fetch data for "profession" dropdown from the public API
     useEffect(() => {
-      fetch('https://test-services.interact.technology/rest/refdata/professions')
+      fetch('/rest/refdata/professions')
         .then((response) => response.json())
         .then((data) => setProfessions(data))
-        .catch((error) => console.error('Error fetching professions:', error));
+        .catch((error) => console.error(error));
     }, []);
   
     // Fetch data for "specialty" dropdown based on selected profession
     useEffect(() => {
       if (profession) {
-        fetch(`https://test-services.interact.technology/rest/refdata/specialties?professionId=${profession}`)
+        fetch(`/rest/refdata/specialties?professionId=${profession}`)
           .then((response) => response.json())
           .then((data) => setSpecialties(data))
-          .catch((error) => console.error('Error fetching specialties:', error));
+          .catch((error) => console.error(error));
       }
     }, [profession]);
   
