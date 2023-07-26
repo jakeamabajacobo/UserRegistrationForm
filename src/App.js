@@ -25,12 +25,12 @@ const UserRegistrationForm = () => {
 
     <><h1>test</h1>
  
-    <select value={profession} onChange={(e) => setProfession(e.target.value)}>
+    {/* <select value={profession} onChange={(e) => setProfession(e.target.value)}>
       <option  key="default" value="">Select Profession</option>
       {professions.map((profession) => (
         <option  key={profession.professionId}  value={profession.professionId}>{profession.professionName}</option>
       ))}
-    </select>
+    </select> */}
 
   
     
