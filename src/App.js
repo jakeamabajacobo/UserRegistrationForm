@@ -6,7 +6,7 @@ const UserRegistrationForm = () => {
   const [professions, setProfessions] = useState([]);
   const [profession, setProfession] = useState('');
 
-  const rootUrl = process.env.NODE_ENV === "production" ? "https://registeruser55knots.vercel.app" : ""
+  const rootUrl = process.env.NODE_ENV === "production" ? "https://test-services.interact.technology" : ""
    
 
 
