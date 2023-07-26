@@ -13,7 +13,7 @@ const UserRegistrationForm = async () => {
           
 
     const res = await fetch(`https://test-services.interact.technology/rest/refdata/professions`)
-   console.log( res.json())
+   console.log(res)
   
 
   return (
