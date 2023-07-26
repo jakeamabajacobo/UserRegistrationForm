@@ -11,7 +11,7 @@ const UserRegistrationForm = () => {
 
 
     fetch('/rest/refdata/professions')
-    .then((response) => console.log('response: ' +response))
+    .then((response) => console.log('response: ' +response.json()))
     .then((data) =>console.log('data: ' +data))
     .catch((error) => console.log('errror:  ' +error));
 
