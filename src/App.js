@@ -16,7 +16,7 @@ const UserRegistrationForm = () => {
     // .catch((error) => console.log('errror:  ' +error));
 
 
-    fetch('/rest/refdata/professions')
+    fetch(`${rootUrl}/rest/refdata/professions`)
     .then((response) => response.json())
     .then((data) => setProfessions(data))
     .catch((error) => console.error(error.json()));
