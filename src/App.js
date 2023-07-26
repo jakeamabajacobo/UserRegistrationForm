@@ -10,16 +10,16 @@ const UserRegistrationForm = () => {
    
 
 
-    fetch('/rest/refdata/professions')
-    .then((response) => console.log('response: ' +response.json()))
-    .then((data) =>console.log('data: ' +data))
-    .catch((error) => console.log('errror:  ' +error));
-
-
     // fetch('/rest/refdata/professions')
-    // .then((response) => response.json())
-    // .then((data) => setProfessions(data))
-    // .catch((error) => console.error(error));
+    // .then((response) => console.log('response: ' +response))
+    // .then((data) =>console.log('data: ' +data))
+    // .catch((error) => console.log('errror:  ' +error));
+
+
+    fetch('/rest/refdata/professions')
+    .then((response) => response.json())
+    .then((data) => setProfessions(data))
+    .catch((error) => console.error(error));
           
   
 
